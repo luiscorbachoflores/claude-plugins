@@ -1,7 +1,7 @@
 {
-  "name": "usage-band",
+  "name": "status-band",
   "version": "0.1.0",
-  "description": "Barra pegada a la derecha encima del prompt con el consumo de 5h, el semanal y el coste, sin etiquetas ni tener que abrir /status",
+  "description": "Barra pegada a la derecha encima del prompt con el consumo de 5h/7d/coste y el % de contexto usado (en otro color), en una sola línea, sin tener que abrir /status ni /context",
   "author": { "name": "luiscorbachoflores" },
   "license": "MIT",
   "types": "./types/index.d.ts"

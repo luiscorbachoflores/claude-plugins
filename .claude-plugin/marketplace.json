@@ -2,5 +2,5 @@
   "name": "luiscorbachoflores-claude-plugins",
   "owner": { "name": "luiscorbachoflores" },
   "description": "Mods personales de Claude Code",
-  "plugins": [{ "name": "usage-band", "source": "./" }]
+  "plugins": [{ "name": "status-band", "source": "./" }]
 }

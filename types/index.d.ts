@@ -1,13 +1,14 @@
-export type UsageFigures = {
+export type Figures = {
   fiveHourPercent: number | null
   fiveHourResetsAt: string | null
   weekPercent: number | null
   weekResetsAt: string | null
   costUsd: number | null
+  contextPercent: number | null
 }
 
 declare module 'claude-code' {
   interface PluginState {
-    'usage-band': { figures: UsageFigures }
+    'status-band': { figures: Shaped<Figures> }
   }
 }
