@@ -1,6 +1,6 @@
 {
   "name": "status-band",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Etiqueta junto a los modos de sesión (derecha del pie del prompt) con el contexto usado, el consumo de 5h/7d y el coste, en una sola línea, sin tener que abrir /status ni /context",
   "author": { "name": "luiscorbachoflores" },
   "license": "MIT",

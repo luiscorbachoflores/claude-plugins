@@ -100,12 +100,10 @@ function formatUsage(f: Figures, nowMs: number): string | undefined {
   return `${part1} ${SEPARATOR} ${part2} ${SEPARATOR} ${cost}`
 }
 
-function formatContext(f: Figures): string | undefined {
-  if (f.contextPercent === null) {
-    return undefined
-  }
+function formatContext(f: Figures): string {
+  const percent = f.contextPercent ?? 0
 
-  return `ctx ${bar(f.contextPercent)} ${Math.round(f.contextPercent)}%`
+  return `ctx ${bar(percent)} ${Math.round(percent)}%`
 }
 
 export const register: Register = on => {
@@ -129,23 +127,12 @@ export const register: Register = on => {
     const usageText = formatUsage(f, await $.clock.now())
     const contextText = formatContext(f)
 
-    if (usageText === undefined && contextText === undefined) {
-      return inner
-    }
-
     const { Box, Text } = $.ui.resolve(e)
 
-    const runs = []
-
-    if (contextText !== undefined) {
-      runs.push(<Text color={contextColor(f.contextPercent ?? 0)}>{contextText}</Text>)
-    }
+    const runs = [<Text color={contextColor(f.contextPercent ?? 0)}>{contextText}</Text>]
 
     if (usageText !== undefined) {
-      if (contextText !== undefined) {
-        runs.push(<Text dimColor> {SEPARATOR} </Text>)
-      }
-
+      runs.push(<Text dimColor> {SEPARATOR} </Text>)
       runs.push(<Text dimColor>{usageText}</Text>)
     }
 
