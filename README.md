@@ -1,8 +1,8 @@
 # status-band
 
-Barra pegada a la derecha, encima del prompt de Claude Code, con el consumo de la sesión en una sola línea: ventana de 5 horas, semanal (7 días), coste acumulado y, al final en un color distinto al resto, el porcentaje de contexto usado (sobre la ventana del modelo; `/context` mide contra la ventana de compactación, normalmente algo menor, así que puede ir algo adelantado). El color del tramo `ctx` cambia según lo lleno que vaya: tono normal hasta 60%, aviso hasta 85%, crítico a partir de ahí. Lleva un margen superior para no pegarse al texto de encima.
+Etiqueta junto a los modos de sesión, a la derecha del pie del prompt de Claude Code (donde aparece "auto mode on" y similares), en una sola línea: primero el porcentaje de contexto usado (`ctx NN%`, en un color que cambia según lo lleno que vaya: normal hasta 60%, aviso hasta 85%, crítico a partir de ahí), luego el consumo de 5 horas, el semanal (7 días) y el coste acumulado, en gris tenue. Si hay algún modo de sesión activo (ej. "auto mode on"), se añade detrás con ` & `, igual que hace Claude Code entre sus propias etiquetas. Se actualiza sola, sin tener que abrir `/status` ni `/context`.
 
-Sustituye a `usage-band` (incluye toda su información) — no instales ambos a la vez, competirían por la misma banda.
+El contexto se mide sobre la ventana del modelo; `/context` mide contra la ventana de compactación, normalmente algo menor, así que puede ir algo adelantado.
 
 ## Instalación
 

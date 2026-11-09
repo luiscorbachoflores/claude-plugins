@@ -122,39 +122,43 @@ export const register: Register = on => {
     return next(e)
   })
 
-  on('ui.render', { component: 'AbovePrompt' }, async ($, e, next) => {
-    if (e.props.hasSurvey) {
-      return next(e)
-    }
+  on('ui.render', { component: 'SessionMode' }, async ($, e, next) => {
+    const inner = await next(e)
 
     const f = await read($, figures)
     const usageText = formatUsage(f, await $.clock.now())
     const contextText = formatContext(f)
 
     if (usageText === undefined && contextText === undefined) {
-      return next(e)
+      return inner
     }
 
     const { Box, Text } = $.ui.resolve(e)
 
     const runs = []
 
-    if (usageText !== undefined) {
-      runs.push(<Text dimColor>{usageText} </Text>)
-    }
-
     if (contextText !== undefined) {
-      if (usageText !== undefined) {
-        runs.push(<Text dimColor>{SEPARATOR} </Text>)
-      }
-
       runs.push(<Text color={contextColor(f.contextPercent ?? 0)}>{contextText}</Text>)
     }
 
-    return (
-      <Box flexDirection="row" justifyContent="flex-end" width="100%" marginTop={1}>
-        <Text wrap="truncate-end">{runs}</Text>
-      </Box>
-    )
+    if (usageText !== undefined) {
+      if (contextText !== undefined) {
+        runs.push(<Text dimColor> {SEPARATOR} </Text>)
+      }
+
+      runs.push(<Text dimColor>{usageText}</Text>)
+    }
+
+    const children = [<Text wrap="truncate-end">{runs}</Text>]
+
+    if (inner !== undefined) {
+      if (e.props.modes.length > 0) {
+        children.push(<Text dimColor> & </Text>)
+      }
+
+      children.push(inner)
+    }
+
+    return <Box flexDirection="row">{children}</Box>
   })
 }
